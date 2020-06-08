@@ -1,0 +1,6 @@
+{
+  "name": "LoginCustomer",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./LoginCustomer.js"
+}

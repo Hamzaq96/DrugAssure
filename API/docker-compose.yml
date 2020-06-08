@@ -1,0 +1,30 @@
+version: "3"
+networks:
+  app_server:
+    driver: bridge
+    ipam:
+     config:
+      - subnet: 172.25.0.0/24
+
+services:
+  login-app:
+    networks:
+      app_server:
+        ipv4_address: 172.25.0.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/app/
+      - /usr/app/logs/
+    ports:
+      - "8080:8080"
+    links:
+      - mongo
+  mongo:
+    networks:
+      app_server:
+        ipv4_address: 172.25.0.3
+    image: mongo:latest
+    volumes:
+      - ./data:/data/db
